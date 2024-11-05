@@ -5,7 +5,7 @@ const Notes = require('../models/Notes');
 const { body, validationResult } = require('express-validator');
 
 //Router 1: Get All the Notes , using Get: "/api/notes/fetchallnotes".Login required
-router.get('/fetchallnotes', fetchUser, async (req, res) => {
+router.get('/fetchallnotes', async (req, res) => {
     try {
 
         const note = await Notes.find({ user: req.user.id });
@@ -18,7 +18,7 @@ router.get('/fetchallnotes', fetchUser, async (req, res) => {
 })
 
 //Router 2: Add new Note , using Post: "/api/notes/addnote".Login required
-router.post('/addnote', fetchUser, [
+router.post('/addnote', [
     body('title', 'enter a valid title').isLength({ min: 3 }),
     body('description', 'enter atleast 6 character in description').isLength({ min: 6 }),
 ], async (req, res) => {
