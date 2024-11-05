@@ -32,6 +32,10 @@ app.use('/api/auth', require('./routes/auth.js'))
 app.use('/api/notes', require('./routes/notes.js'))
 app.use('/api/contacts', require('./routes/contacts.js'))
 
+app.get("/health", (req, res) => {
+  res.send("Health OK");
+});
+
 app.listen(port, () => {
   console.log(`iNotesBook backend app listening on port ${port}`)
 })
