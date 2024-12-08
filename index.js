@@ -20,7 +20,7 @@ const port = 5000
 const cors = require('cors')
 app.use(cors(
   {
-    origin: ['*'],
+    origin: ['http://localhost:3000', 'https://task-management-nine-ebon.vercel.app/'],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
   }
 )
