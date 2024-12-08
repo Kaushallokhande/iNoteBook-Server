@@ -21,11 +21,7 @@ const cors = require('cors')
 app.use(cors(
   {
     origin: ["*"],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    credentials: true,
-    allowedHeaders: "Authorization, Content-Type, Accept",
-    optionsSuccessStatus: 200,
-    exposedHeaders: ["set-cookie"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
   }
 )
 )
