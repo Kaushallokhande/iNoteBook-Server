@@ -1,41 +1,37 @@
-//npm init
-//npm  i express
-//npm i mongoose@6.10.0
-// we can use Thundre Client alternative (Post man)
-//npm i -D nodemon
-//npm install --save express-validator
-//npm i bcryptjs
-//npm install jsonwebtoken
-//npm install cors
+const express = require('express');
+const cors = require('cors');
+const connectToMongo = require('./db.js'); // Make sure db.js is set up to connect to MongoDB
+const app = express();
+const port = 5000;
 
-const connectToMongo = require('./db.js')
-connectToMongo();
+// Use CORS to allow specific origins
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://task-management-nine-ebon.vercel.app/'],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
+}));
 
+app.use(express.json()); // Middleware to parse JSON data
 
-const express = require('express')
-const app = express()
-const port = 5000
+// API routes
+app.use('/api/auth', require('./routes/auth.js'));
+app.use('/api/notes', require('./routes/notes.js'));
+app.use('/api/contacts', require('./routes/contacts.js'));
 
-
-const cors = require('cors')
-app.use(cors(
-  {
-    origin: ['http://localhost:3000', 'https://task-management-nine-ebon.vercel.app/'],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
-  }
-)
-)
-
-app.use(express.json())
-//routes
-app.use('/api/auth', require('./routes/auth.js'))
-app.use('/api/notes', require('./routes/notes.js'))
-app.use('/api/contacts', require('./routes/contacts.js'))
-
+// Health check route
 app.get("/health", (req, res) => {
   res.send("Health OK");
 });
 
+// Connect to MongoDB
+connectToMongo(); // Ensure this method is defined in db.js to connect to your MongoDB instance
+
+// Global error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send({ error: 'Something went wrong!' });
+});
+
+// Start the server
 app.listen(port, () => {
-  console.log(`iNotesBook backend app listening on port ${port}`)
-})
+  console.log(`iNotesBook backend app listening on port ${port}`);
+});
