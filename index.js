@@ -20,7 +20,7 @@ const port = 5000
 const cors = require('cors')
 app.use(cors(
   {
-    origin: ['http://localhost:3000', 'https://your-frontend-production-url.com'],
+    origin: ['*'],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
   }
 )
