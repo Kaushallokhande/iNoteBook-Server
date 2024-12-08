@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const mongoURI = "mongodb+srv://kaushallokhande12345:QyYFP6gWA8I8OnKj@cluster0.cseaj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tls=true"
+const mongoURI = "mongodb+srv://kaushallokhande12345:Mc5zykZYgglHXBjB@cluster0.qqlnv.mongodb.net/?retryWrites=true&w=majority&tls=true"
 
 const connectToMongo= () =>{
     mongoose.connect(mongoURI, () =>{
