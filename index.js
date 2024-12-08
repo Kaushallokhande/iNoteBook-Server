@@ -5,10 +5,16 @@ const app = express();
 const port = 5000;
 
 // Use CORS to allow specific origins
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://task-management-nine-ebon.vercel.app/'],
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"]
-}));
+app.use(
+  cors({
+      origin: ["*"],
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+      credentials: true,
+      allowedHeaders: "Authorization, Content-Type, Accept",
+      optionsSuccessStatus: 200,
+      exposedHeaders: ["set-cookie"],
+  })
+);
 
 app.use(express.json()); // Middleware to parse JSON data
 
